@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input, select, textarea, button {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>Diagnostic Form</h1>
+    <form action="process_form.php" method="POST">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+        <label for="contact">Email or Phone Number:</label>
+        <input type="text" id="contact" name="contact" placeholder="Enter your email or phone number" required>
+
+        <label for="device">Device Type:</label>
+        <select id="device" name="device" required>
+            <option value="" disabled selected>Select your device</option>
+            <option value="iPhone">iPhone</option>
+            <option value="Samsung">Samsung</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <label for="issue">Issue Description:</label>
+        <textarea id="issue" name="issue" rows="5" placeholder="Describe the problem" required></textarea>
+
+        <label for="contactMethod">Preferred Contact Method:</label>
+        <div>
+            <input type="radio" id="emailContact" name="contactMethod" value="Email" required>
+            <label for="emailContact">Email</label>
+            <input type="radio" id="textContact" name="contactMethod" value="Text" required>
+            <label for="textContact">Text</label>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
