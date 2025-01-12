@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diagnostic Form</title>
+    <title>Repair Diagnostic Form</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -42,6 +42,10 @@
     </style>
 </head>
 <body>
+    <header>
+        <h1>Welcome to I Fix Phones</h1>
+        <p>Describe your issue, and we'll get back to you with pricing and repair details!</p>
+    </header>
     <h1>Diagnostic Form</h1>
     <form action="process_form.php" method="POST">
         <label for="name">Your Name:</label>
@@ -68,7 +72,10 @@
             <input type="radio" id="textContact" name="contactMethod" value="Text" required>
             <label for="textContact">Text</label>
         </div>
-
+        
+        <label for="photo">Upload Photo (Optional):</label>
+        <input type="file" id="photo" name="photo" accept="image/*">
+ 
         <button type="submit">Submit</button>
     </form>
 </body>
