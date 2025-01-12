@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Email headers
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    $headers .= "From: noreply@yourdomain.com" . "\r\n"; // Replace with your domain
+    $headers .= "From: smartechx.com" . "\r\n"; // Replace with your domain
 
     // Send email
     if (mail($to, $subject, $message, $headers)) {
