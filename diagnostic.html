@@ -3,80 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repair Diagnostic Form</title>
+    <title>Diagnostic Form</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            max-width: 600px;
+            margin: 0 auto;
             padding: 20px;
         }
         form {
-            max-width: 400px;
-            margin: auto;
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
         }
         label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
+            margin: 10px 0 5px;
         }
-        input, select, textarea, button {
-            width: 100%;
-            margin-bottom: 15px;
+        input, textarea, select, button {
             padding: 10px;
+            margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
         button {
-            background-color: #28a745;
-            color: white;
-            font-size: 16px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
             cursor: pointer;
         }
         button:hover {
-            background-color: #218838;
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
         }
     </style>
+    <script>
+        function validateForm(event) {
+            // Get the form fields
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+
+            // Clear previous error messages
+            const errorElement = document.getElementById("error-message");
+            errorElement.textContent = "";
+
+            // Check if at least one is filled
+            if (!email && !phone) {
+                errorElement.textContent = "Please provide either an email or a phone number.";
+                event.preventDefault(); // Prevent form submission
+                return false;
+            }
+            return true; // Allow form submission
+        }
+    </script>
 </head>
 <body>
-    <header>
-        <h1>Welcome to I Fix Phones</h1>
-        <p>Describe your issue, and we'll get back to you with pricing and repair details!</p>
-    </header>
     <h1>Diagnostic Form</h1>
-    <form action="form.php" method="POST" enctype="multipart/form-data">
-        <label for="name">Your Name:</label>
-        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+    <form action="https://api.web3forms.com/submit" method="POST" onsubmit="return validateForm(event)">
+        <!-- Web3Forms Public Access Key -->
+        <input type="hidden" name="access_key" value="9a93c35b-ed12-49bf-ada6-4c9725145c05">
 
-        <label for="contact">Email or Phone Number:</label>
-        <input type="text" id="contact" name="contact" placeholder="Enter your email or phone number" required>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Your full name" required>
 
-        <label for="device">Device Type:</label>
-        <select id="device" name="device" required>
-            <option value="" disabled selected>Select your device</option>
-            <option value="iPhone">iPhone</option>
-            <option value="Samsung">Samsung</option>
-            <option value="Other">Other</option>
-        </select>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Your email address">
 
-        <label for="issue">Issue Description:</label>
-        <textarea id="issue" name="issue" rows="5" placeholder="Describe the problem" required></textarea>
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="Your phone number (e.g., +1234567890)">
+
+        <label for="device">Device:</label>
+        <input type="text" id="device" name="device" placeholder="Device type (e.g., iPhone 13)" required>
+
+        <label for="message">Issue:</label>
+        <textarea id="message" name="message" rows="5" placeholder="Describe the issue with the device" required></textarea>
 
         <label for="contactMethod">Preferred Contact Method:</label>
-        <div>
-            <input type="radio" id="emailContact" name="contactMethod" value="Email" required>
-            <label for="emailContact">Email</label>
-            <input type="radio" id="textContact" name="contactMethod" value="Text" required>
-            <label for="textContact">Text</label>
-        </div>
-        
-        <label for="photo">Upload Photo (Optional):</label>
-        <input type="file" id="photo" name="photo" accept="image/*">
- 
-        <button type="submit">Submit</button>
+        <select id="contactMethod" name="contactMethod" required>
+            <option value="">Select...</option>
+            <option value="email">Email</option>
+            <option value="phone">Phone</option>
+            <option value="both">Both</option>
+        </select>
+
+        <div id="error-message" class="error"></div>
+
+        <button type="submit">Submit Form</button>
     </form>
 </body>
 </html>
